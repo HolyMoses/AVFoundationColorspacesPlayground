@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+  @State var defaultImage: UIImage
+  @State var deviceRGBImage: UIImage
+  @State var sRGBImage: UIImage
+  
+  var body: some View {
+    Text("Default")
+    Image(uiImage: defaultImage)
+      .resizable()
+      .scaledToFit()
+    Spacer()
+    
+    Text("DeviceRGB")
+    Image(uiImage: deviceRGBImage)
+      .resizable()
+      .scaledToFit()
+    Spacer()
+    
+    Text("sRGB")
+    Image(uiImage: sRGBImage)
+      .resizable()
+      .scaledToFit()
+  }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    ContentView()
+//  }
+//}

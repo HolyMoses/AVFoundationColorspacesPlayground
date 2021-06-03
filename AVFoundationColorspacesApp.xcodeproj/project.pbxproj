@@ -13,6 +13,7 @@
 		86E9A9252668B9A600BA17B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9242668B9A600BA17B0 /* Assets.xcassets */; };
 		86E9A9282668B9A600BA17B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9272668B9A600BA17B0 /* Preview Assets.xcassets */; };
 		86E9A92B2668B9A600BA17B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9292668B9A600BA17B0 /* LaunchScreen.storyboard */; };
+		86E9A9332668BFE400BA17B0 /* asaph_netai.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9322668BFE400BA17B0 /* asaph_netai.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		86E9A9272668B9A600BA17B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86E9A92A2668B9A600BA17B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86E9A92C2668B9A600BA17B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86E9A9322668BFE400BA17B0 /* asaph_netai.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asaph_netai.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		86E9A91D2668B9A500BA17B0 /* AVFoundationColorspacesApp */ = {
 			isa = PBXGroup;
 			children = (
+				86E9A9322668BFE400BA17B0 /* asaph_netai.jpg */,
 				86E9A91E2668B9A500BA17B0 /* AppDelegate.swift */,
 				86E9A9202668B9A500BA17B0 /* SceneDelegate.swift */,
 				86E9A9222668B9A500BA17B0 /* ContentView.swift */,
@@ -135,6 +138,7 @@
 				86E9A92B2668B9A600BA17B0 /* LaunchScreen.storyboard in Resources */,
 				86E9A9282668B9A600BA17B0 /* Preview Assets.xcassets in Resources */,
 				86E9A9252668B9A600BA17B0 /* Assets.xcassets in Resources */,
+				86E9A9332668BFE400BA17B0 /* asaph_netai.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
