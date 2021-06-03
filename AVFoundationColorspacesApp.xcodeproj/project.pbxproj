@@ -3,11 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		86C308712668CFEA0078B493 /* Clara_Amnon_Avital.mov.mov in Resources */ = {isa = PBXBuildFile; fileRef = 86C308702668CFEA0078B493 /* Clara_Amnon_Avital.mov.mov */; };
+		86C308712668CFEA0078B493 /* Clara_Amnon_Avital.mov in Resources */ = {isa = PBXBuildFile; fileRef = 86C308702668CFEA0078B493 /* Clara_Amnon_Avital.mov */; };
+		86C308742668DCF00078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic in Resources */ = {isa = PBXBuildFile; fileRef = 86C308722668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic */; };
+		86C308752668DCF00078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS13.heic in Resources */ = {isa = PBXBuildFile; fileRef = 86C308732668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS13.heic */; };
+		86C308782668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic in Resources */ = {isa = PBXBuildFile; fileRef = 86C308762668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic */; };
+		86C308792668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic in Resources */ = {isa = PBXBuildFile; fileRef = 86C308772668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic */; };
+		86C309AD2668EF9F0078B493 /* clara_1080p_with_sound_1_sec_recoded.mov in Resources */ = {isa = PBXBuildFile; fileRef = 86C309AC2668EF9F0078B493 /* clara_1080p_with_sound_1_sec_recoded.mov */; };
+		86C309B02668F48A0078B493 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 86C309AF2668F48A0078B493 /* RxRelay */; };
+		86C309B22668F48A0078B493 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 86C309B12668F48A0078B493 /* RxSwift */; };
+		86C309B42668F48A0078B493 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 86C309B32668F48A0078B493 /* RxCocoa */; };
 		86E9A91F2668B9A500BA17B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A91E2668B9A500BA17B0 /* AppDelegate.swift */; };
 		86E9A9212668B9A500BA17B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A9202668B9A500BA17B0 /* SceneDelegate.swift */; };
 		86E9A9232668B9A500BA17B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A9222668B9A500BA17B0 /* ContentView.swift */; };
@@ -20,7 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		86C308702668CFEA0078B493 /* Clara_Amnon_Avital.mov.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Clara_Amnon_Avital.mov.mov; sourceTree = "<group>"; };
+		86C308702668CFEA0078B493 /* Clara_Amnon_Avital.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Clara_Amnon_Avital.mov; sourceTree = "<group>"; };
+		86C308722668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic; sourceTree = "<group>"; };
+		86C308732668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS13.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS13.heic; sourceTree = "<group>"; };
+		86C308762668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic; sourceTree = "<group>"; };
+		86C308772668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic; sourceTree = "<group>"; };
+		86C309AC2668EF9F0078B493 /* clara_1080p_with_sound_1_sec_recoded.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = clara_1080p_with_sound_1_sec_recoded.mov; sourceTree = "<group>"; };
 		86E9A91B2668B9A500BA17B0 /* AVFoundationColorspacesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVFoundationColorspacesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E9A91E2668B9A500BA17B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86E9A9202668B9A500BA17B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +52,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C309B42668F48A0078B493 /* RxCocoa in Frameworks */,
+				86C309B22668F48A0078B493 /* RxSwift in Frameworks */,
+				86C309B02668F48A0078B493 /* RxRelay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +83,12 @@
 				86E9A91E2668B9A500BA17B0 /* AppDelegate.swift */,
 				86E9A9322668BFE400BA17B0 /* asaph_netai.jpg */,
 				86E9A9242668B9A600BA17B0 /* Assets.xcassets */,
-				86C308702668CFEA0078B493 /* Clara_Amnon_Avital.mov.mov */,
+				86C309AC2668EF9F0078B493 /* clara_1080p_with_sound_1_sec_recoded.mov */,
+				86C308702668CFEA0078B493 /* Clara_Amnon_Avital.mov */,
+				86C308732668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS13.heic */,
+				86C308722668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic */,
+				86C308772668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic */,
+				86C308762668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic */,
 				86E9A9222668B9A500BA17B0 /* ContentView.swift */,
 				86E9A92C2668B9A600BA17B0 /* Info.plist */,
 				86E9A9292668B9A600BA17B0 /* LaunchScreen.storyboard */,
@@ -103,6 +124,11 @@
 			dependencies = (
 			);
 			name = AVFoundationColorspacesApp;
+			packageProductDependencies = (
+				86C309AF2668F48A0078B493 /* RxRelay */,
+				86C309B12668F48A0078B493 /* RxSwift */,
+				86C309B32668F48A0078B493 /* RxCocoa */,
+			);
 			productName = AVFoundationColorspacesApp;
 			productReference = 86E9A91B2668B9A500BA17B0 /* AVFoundationColorspacesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +156,9 @@
 				Base,
 			);
 			mainGroup = 86E9A9122668B9A400BA17B0;
+			packageReferences = (
+				86C309AE2668F48A0078B493 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 86E9A91C2668B9A500BA17B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -146,10 +175,15 @@
 			files = (
 				86E9A92B2668B9A600BA17B0 /* LaunchScreen.storyboard in Resources */,
 				86E9A9282668B9A600BA17B0 /* Preview Assets.xcassets in Resources */,
-				86C308712668CFEA0078B493 /* Clara_Amnon_Avital.mov.mov in Resources */,
+				86C308752668DCF00078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS13.heic in Resources */,
+				86C308782668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic in Resources */,
+				86C308712668CFEA0078B493 /* Clara_Amnon_Avital.mov in Resources */,
+				86C309AD2668EF9F0078B493 /* clara_1080p_with_sound_1_sec_recoded.mov in Resources */,
 				86E9A9352668C9E600BA17B0 /* QuickTime_Test_Pattern_HD.mov in Resources */,
 				86E9A9252668B9A600BA17B0 /* Assets.xcassets in Resources */,
 				86E9A9332668BFE400BA17B0 /* asaph_netai.jpg in Resources */,
+				86C308742668DCF00078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic in Resources */,
+				86C308792668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic in Resources */,
 				86E9A9372668C9F500BA17B0 /* QuickTime_Test_Pattern_SD.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +395,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		86C309AE2668F48A0078B493 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		86C309AF2668F48A0078B493 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C309AE2668F48A0078B493 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		86C309B12668F48A0078B493 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C309AE2668F48A0078B493 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		86C309B32668F48A0078B493 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C309AE2668F48A0078B493 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 86E9A9132668B9A400BA17B0 /* Project object */;
 }

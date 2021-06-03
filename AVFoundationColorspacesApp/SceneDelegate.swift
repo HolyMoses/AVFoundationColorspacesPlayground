@@ -8,6 +8,7 @@
 import AVFoundation
 import UIKit
 import SwiftUI
+import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,12 +16,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   let sdURL = Bundle.main.url(forResource: "QuickTime_Test_Pattern_SD", withExtension: "mov")!
   let hdURL = Bundle.main.url(forResource: "QuickTime_Test_Pattern_HD", withExtension: "mov")!
-  let claraURL = Bundle.main.url(forResource: "Clara_Amnon_Avital.mov", withExtension: "mov")!
+  let claraURL = Bundle.main.url(forResource: "Clara_Amnon_Avital", withExtension: "mov")!
+  let claraRecodedURL = Bundle.main.url(forResource: "clara_1080p_with_sound_1_sec_recoded", withExtension: "mov")!
+
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-    let asset = AVAsset(url: sdURL)
+    let asset = AVAsset(url: claraRecodedURL)
+
     let imageGenerator = AVAssetImageGenerator(asset: asset)
+
+//    let videoComposition = AVMutableVideoComposition(propertiesOf: imageGenerator.asset)
+//    videoComposition.colorPrimaries = AVVideoColorPrimaries_ITU_R_709_2
+//    videoComposition.colorTransferFunction = AVVideoTransferFunction_ITU_R_709_2
+//    videoComposition.colorYCbCrMatrix = AVVideoYCbCrMatrix_ITU_R_709_2
+//    imageGenerator.videoComposition = videoComposition
 
     let defaultImage = try! imageGenerator.copyCGImage(at: .zero, actualTime: nil)
     let defaultImageColorspaceName = (defaultImage.colorSpace?.name ?? "none") as NSString as String
@@ -46,3 +56,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 }
 
+// TODO: take clara, add profile, see if it fixes VVV
+// take HD/sd, remove profile, see if it breaks
+// TODO - reader A/A 13/14,
+// reader -> writer -> reader
+// ftv export?
+
+
+//asset.tracks(withMediaType: .video).forEach { assetTracks in
+//
+//    let formatDescriptions =
+//        assetTracks.formatDescriptions as! [CMFormatDescription]
+//    for (_, formatDesc) in formatDescriptions.enumerated() {
+//
+//        guard let colorPrimaries =
+//            CMFormatDescriptionGetExtension(formatDesc, extensionKey: kCMFormatDescriptionExtension_ColorPrimaries) else {
+//                return
+//        }
+//
+//        if CFGetTypeID(colorPrimaries) == CFStringGetTypeID() {
+//
+//            let result =
+//                CFStringCompareWithOptions((colorPrimaries as! CFString),
+//                    kCMFormatDescriptionColorPrimaries_ITU_R_709_2,
+//                    CFRangeMake(0, CFStringGetLength((colorPrimaries as! CFString))),
+//                    CFStringCompareFlags.compareCaseInsensitive)
+//            // Is the color primary Rec. 709?
+//            if result == CFComparisonResult.compareEqualTo {
+//                // Your code here to process Rec. 709.
+//            }
+//        }
+//    }
+//}
+//
+
+// RxSwift add as SPM
