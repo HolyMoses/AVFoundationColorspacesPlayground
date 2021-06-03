@@ -175,8 +175,6 @@ class AssetFramesReader {
       return nil
     }
 
-    Thread.sleep(forTimeInterval: 3)
-
     let presentationTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
 
     if presentationTime >= targetTimeRange.end {

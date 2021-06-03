@@ -11,6 +11,7 @@ import AVFoundation
 import UIKit
 import SwiftUI
 import RxSwift
+import CoreGraphics
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,8 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   let claraRecodedURL = Bundle.main.url(forResource: "External Resources/clara_1080p_with_sound_1_sec_recoded", withExtension: "mov")!
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    let contentView = makeImageGeneratorContentView()
-    //    let contentView = makeReaderContentView()
+    //    let contentView = makeImageGeneratorContentView()
+    let contentView = makeReaderContentView()
 
 
     // Use a UIHostingController as window root view controller.
@@ -41,13 +42,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let asset = AVAsset(url: claraRecodedURL)
 
     let imageGenerator = AVAssetImageGenerator(asset: asset)
-
-    //    let videoComposition = AVMutableVideoComposition(propertiesOf: imageGenerator.asset)
-    //    videoComposition.colorPrimaries = AVVideoColorPrimaries_ITU_R_709_2
-    //    videoComposition.colorTransferFunction = AVVideoTransferFunction_ITU_R_709_2
-    //    videoComposition.colorYCbCrMatrix = AVVideoYCbCrMatrix_ITU_R_709_2
-    //    imageGenerator.videoComposition = videoComposition
-
     let defaultImage = try! imageGenerator.copyCGImage(at: .zero, actualTime: nil)
     let defaultImageColorspaceName = (defaultImage.colorSpace?.name ?? "none") as NSString as String
     print(defaultImage.colorSpace as Any)
@@ -64,29 +58,68 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     return contentView
   }
 
+  func generateCGImage(_ asset: AVAsset) -> CGImage {
+    let imageGenerator = AVAssetImageGenerator(asset: asset)
+    let image = try! imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+      .copy(colorSpace: .init(name: CGColorSpace.sRGB)!)!
+    return image
+  }
+
+//  func makeReaderContentView2() -> ReaderContentView {
+//    let asset = AVAsset(url: claraURL)
+//    let assetReader = try! AVAssetReader(asset: asset)
+//    let track = asset.tracks(withMediaType: .video).first!
+//    let videoColorProperties = [AVVideoColorPrimariesKey: AVVideoColorPrimaries_ITU_R_709_2,
+//                                AVVideoTransferFunctionKey: AVVideoTransferFunction_ITU_R_709_2,
+//                                AVVideoYCbCrMatrixKey: AVVideoYCbCrMatrix_ITU_R_709_2
+//                                //                                    AVVideoYCbCrMatrixKey: AVVideoYCbCrMatrix_ITU_R_601_4
+//    ]
+//    let outputSettings: [String: Any] = [
+//      kCVPixelBufferPixelFormatTypeKey as String:
+//        [
+//          kCVPixelFormatType_32BGRA as NSValue,
+//          //              kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange as NSValue,
+//          //              kCVPixelFormatType_420YpCbCr8BiPlanarFullRange as NSValue
+//        ],
+//      kCVPixelBufferIOSurfacePropertiesKey as String: [:],
+//      AVVideoColorPropertiesKey: videoColorProperties
+//    ]
+//    let trackOutput = AVAssetReaderTrackOutput(track: track, outputSettings: outputSettings)
+//    assetReader.add(trackOutput)
+//    assetReader.timeRange = .init(start: .zero, duration: asset.duration)
+//    assetReader.startReading()
+//
+//    let sampleBuffer = trackOutput.copyNextSampleBuffer()!
+//    let presentationTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
+//    let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+//
+//    //CVImageBuffer
+//
+//  }
+
   func makeReaderContentView() -> ReaderContentView {
-    let asset = AVAsset(url: sdURL)
+    let asset = AVAsset(url: claraURL)
 
     let assetReader = AssetFramesReader(asset: asset, selectTracks: { tracks in
       return (tracks, tracks.first!.timeRange)
     })
-    let lock = NSLock()
-    var pixelBuffer1: CVPixelBuffer?
-    DispatchQueue.main.async {
-      lock.lock()
-      pixelBuffer1 = assetReader.readNextFrames()!.first!.value.buffer
-      lock.unlock()
-    }
-    lock.lock()
-    while !assetReader.readingFinished {
-      lock.unlock()
-      Thread.sleep(forTimeInterval: 1)
-      print("waiting")
-    }
-    lock.unlock()
+    let pixelBuffer = assetReader.readNextFrames()!.first!.value.buffer
+    //    let lock = NSLock()
+    //    var pixelBuffer1: CVPixelBuffer?
+    //    DispatchQueue.main.async {
+    //      lock.lock()
+    //      pixelBuffer1 = assetReader.readNextFrames()!.first!.value.buffer
+    //      lock.unlock()
+    //    }
+    //    lock.lock()
+    //    while !assetReader.readingFinished {
+    //      lock.unlock()
+    //      Thread.sleep(forTimeInterval: 1)
+    //      print("waiting")
+    //    }
+    //    lock.unlock()
 
 
-    let pixelBuffer = pixelBuffer1!
     let ioSurface = CVPixelBufferGetIOSurface(pixelBuffer)
     let cvPixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer);
     let kMTBCVPixelFormatToMTLPixelFormatMap = [
@@ -108,26 +141,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let texturePixelFormat = kMTBCVPixelFormatToMTLPixelFormatMap.first { $0.cvFormat == cvPixelFormat }!
     let textureWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer, texturePixelFormat.plane);
     let textureHeight = CVPixelBufferGetHeightOfPlane(pixelBuffer, texturePixelFormat.plane);
-    let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
-      pixelFormat: texturePixelFormat.format,
-      width: textureWidth, height: textureHeight, mipmapped: false
-    )
-    textureDescriptor.usage = .shaderRead
-
-    let device = MTLCreateSystemDefaultDevice()!
-//    let commandQueue = device.makeCommandQueue()
-    let mtlTexture = device.makeTexture(descriptor: textureDescriptor,
-                                        iosurface: ioSurface!.takeRetainedValue(),
-                                        plane: texturePixelFormat.plane)!
-    let ciImage = CIImage(mtlTexture: mtlTexture, options: nil)!
-    let readerImage = UIImage(ciImage: ciImage)
-    print(mtlTexture)
-    print("\n", ciImage)
-    print("\n", readerImage)
+//    let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
+//      pixelFormat: texturePixelFormat.format,
+//      width: textureWidth, height: textureHeight, mipmapped: false
+//    )
+//    textureDescriptor.usage = .shaderRead
+//
+//    let device = MTLCreateSystemDefaultDevice()!
+////    let commandQueue = device.makeCommandQueue()
+//    let mtlTexture = device.makeTexture(descriptor: textureDescriptor)!
+//
+//    let ciImage = CIImage(mtlTexture: mtlTexture, options: nil)!
+//    let correctedCIImage = ciImage.transformed(by: ciImage.orientationTransform(for: .downMirrored), highQualityDownsample: true)
+//    let cgImage = CIContext(mtlDevice: device, options: [CIContextOption.outputColorSpace : CGColorSpace(name: CGColorSpace.sRGB)!])
+//      .createCGImage(correctedCIImage, from: correctedCIImage.extent)!
+//    let readerImage = UIImage(cgImage: cgImage)
+//    print(mtlTexture)
+//    print("\n", ciImage)
+//    print("\n", readerImage)
     //    let readerImageColorspaceName = (mtlTexture. ?? "none") as NSString as String
 
+
+    // 2
+    let imageBuffer = pixelBuffer
+    CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags.init(rawValue: 0))
+
+    let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer) // (uint8_t *)
+    let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)
+    let width = CVPixelBufferGetWidth(imageBuffer)
+    let height = CVPixelBufferGetHeight(imageBuffer)
+//    let colorSpace = CGColorSpaceCreateDeviceRGB()
+    let colorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
+    let newContext = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8,
+                               bytesPerRow: bytesPerRow, space: colorSpace,
+                               bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)!
+    let newImage = newContext.makeImage()!
+    let readerImage = UIImage(cgImage: newImage)
+
+    CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
+
     let contentView = ReaderContentView(readerImageColorspaceName: "aa",
-                                        readerImage: readerImage)
+                                        readerImage: readerImage,
+                                        generatedAssetImage: UIImage(cgImage: generateCGImage(asset)))
     return contentView
   }
 }
@@ -141,6 +196,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // exported assets are tagged
 // preprocessed assets are not tagged
 
+// https://developer.apple.com/documentation/avfoundation/media_assets_and_metadata/sample-level_reading_and_writing/tagging_media_with_video_color_information?language=objc
 // Recode command: ffmpeg -i in.mov -color_primaries bt709 -color_trc bt709 -colorspace bt709 out.mov
 // mediainfo asset.mov
 

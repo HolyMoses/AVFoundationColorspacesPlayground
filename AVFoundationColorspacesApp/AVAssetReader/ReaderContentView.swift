@@ -10,13 +10,18 @@ import SwiftUI
 struct ReaderContentView: View {
   @State var readerImageColorspaceName: String
   @State var readerImage: UIImage
+  @State var generatedAssetImage: UIImage
 
   var body: some View {
     HStack {
       VStack {
         Text("Default. Colorspace: " + readerImageColorspaceName)
-//        MTKView(frame: .zero, device: MTLCreateSystemDefaultDevice()!)
         Image(uiImage: readerImage).resizable().scaledToFit()
+      }
+
+      VStack {
+        Text("generatedAssetImage")
+        Image(uiImage: generatedAssetImage).resizable().scaledToFit()
       }
     }
   }
