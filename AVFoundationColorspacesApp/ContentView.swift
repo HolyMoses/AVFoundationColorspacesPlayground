@@ -8,27 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+  @State var defaultImageColorspaceName: String
   @State var defaultImage: UIImage
   @State var deviceRGBImage: UIImage
   @State var sRGBImage: UIImage
-  
+
   var body: some View {
-    Text("Default")
-    Image(uiImage: defaultImage)
-      .resizable()
-      .scaledToFit()
-    Spacer()
-    
-    Text("DeviceRGB")
-    Image(uiImage: deviceRGBImage)
-      .resizable()
-      .scaledToFit()
-    Spacer()
-    
-    Text("sRGB")
-    Image(uiImage: sRGBImage)
-      .resizable()
-      .scaledToFit()
+    HStack {
+      VStack{
+        Text("Default. Colorspace: " + defaultImageColorspaceName)
+        Image(uiImage: defaultImage).resizable().scaledToFit()
+      }
+
+      VStack{
+        Text("DeviceRGB")
+        Image(uiImage: deviceRGBImage).resizable().scaledToFit()
+      }
+
+      VStack{
+        Text("sRGB")
+        Image(uiImage: sRGBImage).resizable().scaledToFit()
+      }
+    }
   }
 }
 
