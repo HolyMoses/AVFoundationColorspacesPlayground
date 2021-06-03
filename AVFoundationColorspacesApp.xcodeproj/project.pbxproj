@@ -16,9 +16,10 @@
 		86C309B02668F48A0078B493 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 86C309AF2668F48A0078B493 /* RxRelay */; };
 		86C309B22668F48A0078B493 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 86C309B12668F48A0078B493 /* RxSwift */; };
 		86C309B42668F48A0078B493 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 86C309B32668F48A0078B493 /* RxCocoa */; };
+		86C309B62668F82D0078B493 /* ReaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C309B52668F82D0078B493 /* ReaderContentView.swift */; };
 		86E9A91F2668B9A500BA17B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A91E2668B9A500BA17B0 /* AppDelegate.swift */; };
 		86E9A9212668B9A500BA17B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A9202668B9A500BA17B0 /* SceneDelegate.swift */; };
-		86E9A9232668B9A500BA17B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A9222668B9A500BA17B0 /* ContentView.swift */; };
+		86E9A9232668B9A500BA17B0 /* ImageGeneratorContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9A9222668B9A500BA17B0 /* ImageGeneratorContentView.swift */; };
 		86E9A9252668B9A600BA17B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9242668B9A600BA17B0 /* Assets.xcassets */; };
 		86E9A9282668B9A600BA17B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9272668B9A600BA17B0 /* Preview Assets.xcassets */; };
 		86E9A92B2668B9A600BA17B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E9A9292668B9A600BA17B0 /* LaunchScreen.storyboard */; };
@@ -34,10 +35,11 @@
 		86C308762668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic; sourceTree = "<group>"; };
 		86C308772668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic; sourceTree = "<group>"; };
 		86C309AC2668EF9F0078B493 /* clara_1080p_with_sound_1_sec_recoded.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = clara_1080p_with_sound_1_sec_recoded.mov; sourceTree = "<group>"; };
+		86C309B52668F82D0078B493 /* ReaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderContentView.swift; sourceTree = "<group>"; };
 		86E9A91B2668B9A500BA17B0 /* AVFoundationColorspacesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVFoundationColorspacesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E9A91E2668B9A500BA17B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86E9A9202668B9A500BA17B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		86E9A9222668B9A500BA17B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		86E9A9222668B9A500BA17B0 /* ImageGeneratorContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGeneratorContentView.swift; sourceTree = "<group>"; };
 		86E9A9242668B9A600BA17B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86E9A9272668B9A600BA17B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86E9A92A2668B9A600BA17B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,13 +91,14 @@
 				86C308722668DCEF0078B493 /* QuickTime_Test_Pattern_SD__AVAssetImageGenerator__iOS14.heic */,
 				86C308772668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS13.heic */,
 				86C308762668DFCA0078B493 /* QuickTime_Test_Pattern_HD__AVAssetImageGenerator__iOS14.heic */,
-				86E9A9222668B9A500BA17B0 /* ContentView.swift */,
+				86E9A9222668B9A500BA17B0 /* ImageGeneratorContentView.swift */,
 				86E9A92C2668B9A600BA17B0 /* Info.plist */,
 				86E9A9292668B9A600BA17B0 /* LaunchScreen.storyboard */,
 				86E9A9262668B9A600BA17B0 /* Preview Content */,
 				86E9A9342668C9E600BA17B0 /* QuickTime_Test_Pattern_HD.mov */,
 				86E9A9362668C9F500BA17B0 /* QuickTime_Test_Pattern_SD.mov */,
 				86E9A9202668B9A500BA17B0 /* SceneDelegate.swift */,
+				86C309B52668F82D0078B493 /* ReaderContentView.swift */,
 			);
 			path = AVFoundationColorspacesApp;
 			sourceTree = "<group>";
@@ -197,7 +200,8 @@
 			files = (
 				86E9A91F2668B9A500BA17B0 /* AppDelegate.swift in Sources */,
 				86E9A9212668B9A500BA17B0 /* SceneDelegate.swift in Sources */,
-				86E9A9232668B9A500BA17B0 /* ContentView.swift in Sources */,
+				86E9A9232668B9A500BA17B0 /* ImageGeneratorContentView.swift in Sources */,
+				86C309B62668F82D0078B493 /* ReaderContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

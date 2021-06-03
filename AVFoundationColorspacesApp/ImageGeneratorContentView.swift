@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ImageGeneratorContentView: View {
   @State var defaultImageColorspaceName: String
   @State var defaultImage: UIImage
   @State var deviceRGBImage: UIImage
