@@ -8,33 +8,29 @@
 import SwiftUI
 
 struct ImageGeneratorContentView: View {
-  @State var defaultImageColorspaceName: String
-  @State var defaultImage: UIImage
-  @State var deviceRGBImage: UIImage
-  @State var sRGBImage: UIImage
+  @State var title1: String
+  @State var image1: UIImage
+  @State var title2: String
+  @State var image2: UIImage
+  @State var title3: String
+  @State var image3: UIImage
 
   var body: some View {
     HStack {
       VStack{
-        Text("Default. Colorspace: " + defaultImageColorspaceName)
-        Image(uiImage: defaultImage).resizable().scaledToFit()
+        Text(title1)
+        Image(uiImage: image1).resizable().scaledToFit()
       }
 
       VStack{
-        Text("DeviceRGB")
-        Image(uiImage: deviceRGBImage).resizable().scaledToFit()
+        Text(title2)
+        Image(uiImage: image2).resizable().scaledToFit()
       }
 
       VStack{
-        Text("sRGB")
-        Image(uiImage: sRGBImage).resizable().scaledToFit()
+        Text(title3)
+        Image(uiImage: image3).resizable().scaledToFit()
       }
     }
   }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    ContentView()
-//  }
-//}

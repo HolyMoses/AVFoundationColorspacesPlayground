@@ -23,10 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   // clara recoded with 709 color properties.
   // Recode command: ffmpeg -i in.mov -color_primaries bt709 -color_trc bt709 -colorspace bt709 out.mov
   let claraRecodedURL = Bundle.main.url(forResource: "External Resources/clara_1080p_with_sound_1_sec_recoded", withExtension: "mov")!
+  let hdrURL = Bundle.main.url(forResource: "External Resources/hdr4real", withExtension: "mov")!
+  let hdColorGradeURL = Bundle.main.url(forResource: "External Resources/HD_Colorgrade", withExtension: "mp4")!
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    //    let contentView = makeImageGeneratorContentView()
-    let contentView = makeReaderContentView()
+    let contentView = makeImageGeneratorCompositionContentView()
+//    let contentView = makeImageGeneratorContentView()
+//    let contentView = makeReaderContentView()
 
 
     // Use a UIHostingController as window root view controller.
@@ -38,8 +41,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
   }
 
+  func makeImageGeneratorCompositionContentView() -> ImageGeneratorContentView {
+    let asset = AVAsset(url: hdColorGradeURL)
+
+    let imageGenerator = AVAssetImageGenerator(asset: asset)
+    imageGenerator.appliesPreferredTrackTransform = true
+    let defaultImage = try! imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+    let defaultImageColorspaceName = (defaultImage.colorSpace?.name ?? "none") as NSString as String
+
+    let hdColorSpaceImage = defaultImage.copy(colorSpace: CGColorSpace(name: CGColorSpace.itur_709)!)!
+
+    let compositionImageGenerator = AVAssetImageGenerator(asset: asset)
+    compositionImageGenerator.appliesPreferredTrackTransform = true
+    let hdVideoComposition = AVMutableVideoComposition(propertiesOf: asset)
+    hdVideoComposition.colorPrimaries = AVVideoColorPrimaries_ITU_R_709_2
+    hdVideoComposition.colorTransferFunction = AVVideoTransferFunction_ITU_R_709_2
+    hdVideoComposition.colorYCbCrMatrix = AVVideoYCbCrMatrix_ITU_R_709_2
+    compositionImageGenerator.videoComposition = hdVideoComposition
+
+    let hdCompositionImage = try! compositionImageGenerator.copyCGImage(at: .zero, actualTime: nil)
+
+
+    let contentView = ImageGeneratorContentView(
+      title1: defaultImageColorspaceName,
+      image1: UIImage(cgImage: defaultImage),
+      title2: "copy w/colorspace",
+      image2: UIImage(cgImage: hdColorSpaceImage),
+      title3: "composition",
+      image3: UIImage(cgImage: hdCompositionImage)
+    )
+    return contentView
+  }
+
   func makeImageGeneratorContentView() -> ImageGeneratorContentView {
-    let asset = AVAsset(url: claraRecodedURL)
+    let asset = AVAsset(url: hdrURL)
 
     let imageGenerator = AVAssetImageGenerator(asset: asset)
     let defaultImage = try! imageGenerator.copyCGImage(at: .zero, actualTime: nil)
@@ -48,12 +83,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     let deviceRGBImage = defaultImage.copy(colorSpace: CGColorSpaceCreateDeviceRGB())!
     let sRGBImage = defaultImage.copy(colorSpace: .init(name: CGColorSpace.sRGB)!)!
+    
 
     let contentView = ImageGeneratorContentView(
-      defaultImageColorspaceName: defaultImageColorspaceName,
-      defaultImage: UIImage(cgImage: defaultImage),
-      deviceRGBImage: UIImage(cgImage: deviceRGBImage),
-      sRGBImage: UIImage(cgImage: sRGBImage)
+      title1: defaultImageColorspaceName,
+      image1: UIImage(cgImage: defaultImage),
+      title2: "deviceRGB",
+      image2: UIImage(cgImage: deviceRGBImage),
+      title3: "sRGB",
+      image3: UIImage(cgImage: sRGBImage)
+
     )
     return contentView
   }
@@ -192,6 +231,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // TODO - reader A/A 13/14,
 // reader -> writer -> reader
 // ftv export?
+
+// add AVPlayer image
 
 // exported assets are tagged
 // preprocessed assets are not tagged
